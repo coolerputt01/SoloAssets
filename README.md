@@ -1,2 +1,2 @@
-# PixelCols
-A map collisions generator
+# SoloAssets
+A Assets finder helper
