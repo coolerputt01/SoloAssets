@@ -3,8 +3,17 @@ import asset1 from "../assets/images/asset1.png";
 import asset2 from "../assets/images/asset2.png";
 import asset3 from "../assets/images/asset3.png";
 import { ArrowUpRight } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function MainPage() {
+  const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        navigate(`/search?q=${encodeURIComponent(query)}`);
+    };
   return (
     <main className="w-screen h-screen bg-white relative overflow-hidden flex flex-col justify-center items-center gap-16 px-4">
 
@@ -38,9 +47,10 @@ function MainPage() {
         <input
           type="text"
           placeholder="Type an asset keyword..."
+          value={query}
           className="px-4 py-3 rounded-full bg-zinc-800 text-white border-2 border-zinc-600 placeholder-zinc-400 focus:outline-none focus:border-[#fc6f03] focus:ring-1 focus:ring-[#fc6f03]"
         />
-        <button className="bg-[#fc6f03] shadow-lg shadow-black text-zinc-100 font-bold py-3 rounded-full cursor-pointer hover:bg-[#ff9e03] hover:translate-y-1 hover:rotate-2 transition-all flex items-center justify-center gap-2">
+        <button className="bg-[#fc6f03] shadow-lg shadow-black text-zinc-100 font-bold py-3 rounded-full cursor-pointer hover:bg-[#ff9e03] hover:translate-y-1 hover:rotate-2 transition-all flex items-center justify-center gap-2" onClick={handleSubmit}>
           Find it for me! <ArrowUpRight className="w-5 h-5" />
         </button>
       </div>
