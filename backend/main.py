@@ -1,4 +1,5 @@
 import requests
+from flask import Flask,request,jsonify
 from bs4 import BeautifulSoup
 
 class Asset:
@@ -76,8 +77,18 @@ def scrape_all(keyword):
     return all_results
 
 
-if __name__ == "__main__":
-    keyword = "grass"
+app = Flask(__name__)
+
+@app.route("/api/search")
+def scrape_data():
+    keyword = request.args.get("q", "").strip()
+    if not keyword:
+        return jsonify({"error": "Missing search query"}), 400
+    
     results = scrape_all(keyword)
-    for r in results:
-        print(repr(r))
+
+    return jsonify([{"title": a.title, "link": a.link, "preview": a.preview} for a in results])
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

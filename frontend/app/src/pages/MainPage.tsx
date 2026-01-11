@@ -48,6 +48,7 @@ function MainPage() {
           type="text"
           placeholder="Type an asset keyword..."
           value={query}
+          onChange={(e) => setQuery(e.target.value)}
           className="px-4 py-3 rounded-full bg-zinc-800 text-white border-2 border-zinc-600 placeholder-zinc-400 focus:outline-none focus:border-[#fc6f03] focus:ring-1 focus:ring-[#fc6f03]"
         />
         <button className="bg-[#fc6f03] shadow-lg shadow-black text-zinc-100 font-bold py-3 rounded-full cursor-pointer hover:bg-[#ff9e03] hover:translate-y-1 hover:rotate-2 transition-all flex items-center justify-center gap-2" onClick={handleSubmit}>
@@ -55,7 +56,7 @@ function MainPage() {
         </button>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes pulse-slow {
           0%, 100% { transform: scale(1) rotate(var(--tw-rotate)); }
           50% { transform: scale(1.05) rotate(var(--tw-rotate)); }
