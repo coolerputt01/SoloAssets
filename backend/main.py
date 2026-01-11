@@ -1,5 +1,6 @@
 import requests
 from flask import Flask,request,jsonify
+from flask_cors import CORS
 from bs4 import BeautifulSoup
 
 class Asset:
@@ -78,6 +79,7 @@ def scrape_all(keyword):
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/api/search")
 def scrape_data():
